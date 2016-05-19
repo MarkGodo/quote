@@ -16,6 +16,7 @@ class QuotesController < ApplicationController
   def create
     @quote = Quote.new(params[:quote])
     @quote.request = request
+    UserNotifier.send_email.deliver
     if @quote.deliver
       flash.now[:notice] = 'Thank you for your message. We will contact you soon!'
     else
