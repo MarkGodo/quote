@@ -8,16 +8,17 @@
 #end
 
 class QuotesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index]
-  def new
-    @quote = Quote.new
-  end
+  #skip_before_action :authenticate_user!, only: [:index]
+  #def new
+   # @quote = Quote.new
+  #end
 
   def create
-    @quote = Quote.new(params[:quote])
-    @quote.request = request
-    UserNotifier.send_email.deliver
-    if @quote.deliver
+    $quote = Quote.new(params[:quote])
+    #puts @quote
+    #@quote.request = request
+
+    if UserNotifier.send_email.deliver_now
       flash.now[:notice] = 'Thank you for your message. We will contact you soon!'
     else
       flash.now[:error] = 'Cannot send message.'

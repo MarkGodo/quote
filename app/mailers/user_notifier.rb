@@ -3,7 +3,11 @@ class UserNotifier < ActionMailer::Base
 
   # send a signup email to the user, pass in the user object that   contains the user's email address
   def send_email
-    mail( :to => 'mrg007@gmail.com',
-    :subject => 'Thanks for signing up for our amazing app' )
+    @fields = @quote
+    #@fields = fields
+    @name = "Mark"
+    mail( :to => 'mrg007@gmail.com, mark001go@yahoo.com',
+    :subject => 'Quote request' )
+
   end
 end
